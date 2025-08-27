@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Abhishek Anand - Portfolio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #F0F4F8; /* Light gray-blue */
+            color: #1A237E; /* Deep navy blue */
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+        }
+
+        .nav-link {
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background-color: #FF5722; /* Coral */
+            transition: width 0.3s ease-in-out;
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        .navbar {
+            background-color: rgba(240, 244, 248, 0.8);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            transition: background-color 0.3s ease;
+            z-index: 50;
+        }
+
+        /* Hero Section Animation */
+        .hero-text-animation span {
+            display: inline-block;
+            opacity: 0;
+            animation: fadeIn 0.8s forwards;
+        }
+        @keyframes fadeIn {
+            to {
+                opacity: 1;
+            }
+        }
+
+        /* Skills Card Animation */
+        .skill-card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .skill-card:hover {
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Carousel */
+        .carousel-container {
+            perspective: 1200px;
+            transform-style: preserve-3d;
+            position: relative;
+            width: 100%;
+            height: 400px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .carousel {
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            transform-style: preserve-3d;
+            transition: transform 0.6s ease;
+        }
+
+        .carousel-card {
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            background-color: #1A237E; /* Deep navy blue */
+            color: #F0F4F8; /* Light gray-blue */
+            border-radius: 12px;
+            padding: 1.5rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+        
+        /* Set initial positions for carousel cards */
+        .carousel-card:nth-child(1) { transform: rotateY(0deg) translateZ(350px); }
+        .carousel-card:nth-child(2) { transform: rotateY(72deg) translateZ(350px); }
+        .carousel-card:nth-child(3) { transform: rotateY(144deg) translateZ(350px); }
+        .carousel-card:nth-child(4) { transform: rotateY(216deg) translateZ(350px); }
+        .carousel-card:nth-child(5) { transform: rotateY(288deg) translateZ(350px); }
+        
+        .carousel-button {
+            background-color: rgba(26, 35, 126, 0.5); /* Semi-transparent navy */
+            color: #F0F4F8;
+            border: none;
+            cursor: pointer;
+            padding: 0.5rem 1rem;
+            border-radius: 9999px;
+            transition: background-color 0.3s ease;
+        }
+
+        .carousel-button:hover {
+            background-color: rgba(26, 35, 126, 0.8);
+        }
+
+        .carousel-button-left {
+            position: absolute;
+            left: 20px;
+            z-index: 10;
+        }
+
+        .carousel-button-right {
+            position: absolute;
+            right: 20px;
+            z-index: 10;
+        }
+
+    </style>
+</head>
+<body class="selection:bg-[#FF5722] selection:text-white">
+
+    <!-- Navbar -->
+    <nav class="navbar fixed top-0 w-full z-50 py-4 px-6 md:px-12 flex justify-between items-center shadow-lg">
+        <div class="text-xl font-bold text-[#1A237E]">Abhishek Anand</div>
+        <div class="hidden md:flex space-x-8 text-lg font-medium">
+            <a href="#home" class="nav-link">Home</a>
+            <a href="#about" class="nav-link">About Me</a>
+            <a href="#experience" class="nav-link">Experience</a>
+            <a href="#skills" class="nav-link">Skills</a>
+            <a href="#contact" class="nav-link">Contact</a>
+        </div>
+        <div class="md:hidden">
+            <button class="text-[#1A237E] text-2xl">
+                &#9776;
+            </button>
+        </div>
+    </nav>
+
+    <main class="pt-20">
+
+        <!-- Hero Section -->
+        <section id="home" class="min-h-screen flex items-center justify-center p-8 text-center relative">
+            <div class="absolute inset-0 bg-gradient-to-br from-transparent to-[#FF5722] opacity-20 animate-pulse-slow"></div>
+            <div class="z-10 max-w-4xl mx-auto">
+                <h1 class="text-6xl md:text-8xl font-extrabold text-[#1A237E] mb-4">
+                    Abhishek Anand
+                </h1>
+                <p class="text-xl md:text-2xl text-gray-700 leading-relaxed font-semibold">
+                    Crafting scalable solutions in the cloud.<br>A proactive Software Developer and aspiring Cloud Engineer with hands-on experience in full-stack development and a passion for building innovative, cloud-based systems.
+                </p>
+                <a href="https://github.com/Abhishek140501" target="_blank" class="mt-8 inline-block px-8 py-3 bg-[#FF5722] text-white font-bold rounded-full shadow-lg hover:bg-[#E64A19] transition-all duration-300 transform hover:scale-105">
+                    View My Work
+                </a>
+            </div>
+        </section>
+
+        <!-- About Me Section -->
+        <section id="about" class="py-16 md:py-24 px-8 md:px-16 bg-[#F0F4F8] text-[#1A237E]">
+            <div class="max-w-6xl mx-auto">
+                <h2 class="text-4xl md:text-5xl font-bold mb-12 text-center">About Me</h2>
+                <div class="flex flex-col md:flex-row items-center md:items-start space-y-8 md:space-y-0 md:space-x-12">
+                    <div class="md:w-1/2 flex justify-center items-center">
+                        <div class="w-64 h-64 border-4 border-white shadow-lg rounded-full overflow-hidden relative animate-pulse-slow">
+                            <!-- Placeholder for a profile picture -->
+                            <img src="/Image/WhatsApp Image 2025-08-28 at 03.23.28_6e9eafe2.jpg" alt="Profile Picture" class="w-full h-full object-cover">
+                        </div>
+                    </div>
+                    <div class="md:w-1/2">
+                        <p class="text-lg leading-relaxed mb-4">
+                            Hello, I'm Abhishek Anand. I'm a passionate and results-driven BCA graduate on a journey to become a skilled Cloud Engineer. My academic foundation in programming and web technologies, coupled with my ongoing MCA in Cloud Computing from Manipal University, forms the core of my expertise.
+                        </p>
+                        <p class="text-lg leading-relaxed mb-4">
+                            During my time as an intern at the Jharkhand Space Application Centre, I contributed to a real-world project by developing and optimizing backend modules. I further honed my collaborative coding and version control skills as a Google Summer of Code participant, where I improved documentation and contributed to open-source projects.
+                        </p>
+                        <p class="text-lg leading-relaxed">
+                            I thrive on solving complex problems and am always eager to learn. My experience spans from web development with ASP.NET to working with Python and SQL. I am actively seeking an entry-level role where I can leverage my skills to contribute to a dynamic team and grow as a professional.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Experience Section (Carousel) -->
+        <section id="experience" class="py-16 md:py-24 px-8 bg-[#1A237E] text-[#F0F4F8]">
+            <div class="max-w-6xl mx-auto text-center">
+                <h2 class="text-4xl md:text-5xl font-bold mb-12">Experience & Education</h2>
+                <div class="relative flex items-center justify-center">
+                    <button id="carousel-prev" class="carousel-button carousel-button-left">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+                        </svg>
+                    </button>
+                    <div class="carousel-container overflow-hidden">
+                        <div id="carousel" class="carousel">
+                            <div class="carousel-card transform-style: preserve-3d">
+                                <h3 class="text-xl font-bold">Education</h3>
+                                <p class="mt-4 text-sm">Bachelor's in Computer Application | 2022-2025<br>Amity University Jharkhand</p>
+                            </div>
+                            <div class="carousel-card transform-style: preserve-3d">
+                                <h3 class="text-xl font-bold">Professional Experience</h3>
+                                <p class="mt-4 text-sm">Intern - Jharkhand Space Application Centre (JSAC) | Aug 2024 - Oct 2024</p>
+                            </div>
+                            <div class="carousel-card transform-style: preserve-3d">
+                                <h3 class="text-xl font-bold">Open Source</h3>
+                                <p class="mt-4 text-sm">Google Summer of Code (GSOC) Participant | Apr 2024</p>
+                            </div>
+                            <div class="carousel-card transform-style: preserve-3d">
+                                <h3 class="text-xl font-bold">Job Simulation</h3>
+                                <p class="mt-4 text-sm">Deloitte Australia Technology (Forage) | Jul 2025</p>
+                            </div>
+                            <div class="carousel-card transform-style: preserve-3d">
+                                <h3 class="text-xl font-bold">Current Studies</h3>
+                                <p class="mt-4 text-sm">MCA - Cloud Computing | Ongoing</p>
+                            </div>
+                        </div>
+                    </div>
+                    <button id="carousel-prev" class="carousel-button carousel-button-left">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+                        </svg>
+                    </button>
+                    <button id="carousel-next" class="carousel-button carousel-button-right">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Skills Section -->
+        <section id="skills" class="py-16 md:py-24 px-8 bg-[#F0F4F8] text-[#1A237E]">
+            <div class="max-w-6xl mx-auto text-center">
+                <h2 class="text-4xl md:text-5xl font-bold mb-12">Skills & Competencies</h2>
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+                    <!-- Programming Languages -->
+                    <div class="skill-card p-6 rounded-lg shadow-lg bg-[#EAEAEA] text-[#1A237E]">
+                        <h3 class="text-lg font-bold mb-2">Programming Languages</h3>
+                        <p class="text-sm">Python, C, HTML, CSS, JavaScript</p>
+                    </div>
+                    <!-- Web Development -->
+                    <div class="skill-card p-6 rounded-lg shadow-lg bg-[#EAEAEA] text-[#1A237E]">
+                        <h3 class="text-lg font-bold mb-2">Web Development</h3>
+                        <p class="text-sm">ASP.NET, Responsive Web Design, SQL</p>
+                    </div>
+                    <!-- Tools & Technologies -->
+                    <div class="skill-card p-6 rounded-lg shadow-lg bg-[#EAEAEA] text-[#1A237E]">
+                        <h3 class="text-lg font-bold mb-2">Tools & Technologies</h3>
+                        <p class="text-sm">Git, GitHub, Pandas, Pyautogui</p>
+                    </div>
+                    <!-- Cloud & Emerging Tech -->
+                    <div class="skill-card p-6 rounded-lg shadow-lg bg-[#EAEAEA] text-[#1A237E]">
+                        <h3 class="text-lg font-bold mb-2">Cloud & Emerging Tech</h3>
+                        <p class="text-sm">AWS Cloud, Cloud-based Personalisation Systems</p>
+                    </div>
+                    <!-- Data & AI -->
+                    <div class="skill-card p-6 rounded-lg shadow-lg bg-[#EAEAEA] text-[#1A237E]">
+                        <h3 class="text-lg font-bold mb-2">Data & AI</h3>
+                        <p class="text-sm">Data Structures & Algorithms, Basic Machine Learning</p>
+                    </div>
+                    <!-- Soft Skills -->
+                    <div class="skill-card p-6 rounded-lg shadow-lg bg-[#EAEAEA] text-[#1A237E]">
+                        <h3 class="text-lg font-bold mb-2">Soft Skills</h3>
+                        <p class="text-sm">Problem-Solving, Team Collaboration, Time Management, Communication</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="py-16 md:py-24 px-8 bg-[#FF5722] text-white">
+            <div class="max-w-4xl mx-auto text-center">
+                <h2 class="text-4xl md:text-5xl font-bold mb-8">Get In Touch</h2>
+                <p class="text-lg mb-8">I'm always open to new opportunities. Feel free to reach out!</p>
+                <div class="flex flex-col md:flex-row justify-center items-center space-y-4 md:space-y-0 md:space-x-8">
+                    <a href="mailto:anandshek14052@gmail.com" class="flex items-center space-x-2 text-lg hover:underline transition-transform transform hover:scale-105">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M2.003 5.884L10 9.874l8-3.99-7.997 4.992-8.003-4.992zM12 13.974l-9.997-6.25c-.2-.125-.43-.188-.667-.188-.415 0-.81.258-1.025.666-.3.568-.138 1.255.404 1.547l10.997 6.877 10.997-6.877c.542-.292.704-.979.404-1.547-.215-.408-.61-.666-1.025-.666-.237 0-.467.063-.667.188L12 13.974z"/>
+                        </svg>
+                        <span>anandshek14052@gmail.com</span>
+                    </a>
+                    <a href="https://www.linkedin.com/in/abhishek-anand14" target="_blank" class="flex items-center space-x-2 text-lg hover:underline transition-transform transform hover:scale-105">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.75s.784-1.75 1.75-1.75 1.75.79 1.75 1.75-.784 1.75-1.75 1.75zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.76 7 2.373v6.862z"/>
+                        </svg>
+                        <span>LinkedIn</span>
+                    </a>
+                    <a href="https://github.com/Abhishek140501" target="_blank" class="flex items-center space-x-2 text-lg hover:underline transition-transform transform hover:scale-105">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.809 1.309 3.492 1.006.108-.781.416-1.309.762-1.605-2.665-.299-5.463-1.332-5.463-5.93 0-1.314.469-2.383 1.236-3.221-.124-.301-.537-1.52.117-3.176 0 0 1.008-.322 3.301 1.231-.957-.266-1.983-.399-3.004-.404-1.022.005-2.048.138-3.006.404-2.291-1.553-3.298-1.231-3.298-1.231.654 1.656.241 2.875.118 3.176-.767.838-1.236 1.907-1.236 3.221 0 4.609 2.798 5.628 5.454 5.926-.432.378-.823 1.107-.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.196-6.086 8.196-11.386 0-6.627-5.373-12-12-12z"/>
+                        </svg>
+                        <span>GitHub</span>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Hero text animation - This is no longer necessary as we fixed the HTML directly.
+            // Keeping it here for context but it's not needed for the current correct implementation.
+            // const heroText = document.querySelector('.hero-text-animation');
+            // if (heroText) {
+            //     const text = "Crafting scalable solutions in the cloud. A proactive Software Developer and aspiring Cloud Engineer with hands-on experience in full-stack development and a passion for building innovative, cloud-based systems.";
+            //     const words = text.split(' ');
+            //     heroText.innerHTML = '';
+            //     words.forEach((word, index) => {
+            //         const span = document.createElement('span');
+            //         span.textContent = word + ' '; 
+            //         span.style.animationDelay = `${index * 75}ms`;
+            //         heroText.appendChild(span);
+            //     });
+            // }
+
+            // Carousel functionality
+            const carousel = document.getElementById('carousel');
+            const prevButton = document.getElementById('carousel-prev');
+            const nextButton = document.getElementById('carousel-next');
+            const cards = document.querySelectorAll('.carousel-card');
+            const cardCount = cards.length;
+            let currentAngle = 0;
+            const angleIncrement = 360 / cardCount;
+
+            function updateCarousel() {
+                carousel.style.transform = `rotateY(${currentAngle}deg)`;
+            }
+
+            prevButton.addEventListener('click', () => {
+                currentAngle += angleIncrement;
+                updateCarousel();
+            });
+
+            nextButton.addEventListener('click', () => {
+                currentAngle -= angleIncrement;
+                updateCarousel();
+            });
+
+            // Initial carousel setup
+            updateCarousel();
+        });
+    </script>
+</body>
+</html>
